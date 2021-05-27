@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="jquery-3.2.1.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="container mostrar" id="inicio">
+            <div class="row">
+                <div class="col"><h1>Anotador de Truco</h1></div>
+            </div>
+            <br/><br/>
+            <div class="row">
+                <div class="col"><input type="string" class="form-control" id="equipo1" placeholder="Equipo1"></div>
+            </div>
+            <br/><br/>
+            <div class="row">
+                <div class="col"><input type="string" class="form-control" id="equipo2" placeholder="Equipo2"></div>
+            </div>
+            <br/><br/>
+            <div class="row">
+                <div class="col"><input type="button" class="form-control boton" id="24" value="a 24"></div>
+                <div class="col"><input type="button" class="form-control boton" id="30" value="a 30"></div>
+            </div>
+            <br/><br/>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"><input type="button" class="form-control boton" id="iniciar" value="Iniciar"></div>
+            </div>
+
+        </div>
+
+        <div class="container ocultar" id="anotador">
+
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <input type="button" class="form-control boton" id="sumaE1" value="+">
+                        </div>
+                        <div class="col" id="Aequipo1">Equipo 1</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col" id="Aequipo2">Equipo 2</div>
+                        <div class="col">
+                            <input type="button" class="form-control boton" id="sumaE2" value="+">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+
+            <div class="row">
+                <div class="col fosforo"><input type="image" id="0" class="est" src="assets/img/0.png" alt=""></div>
+                <div class="col fosforo"><input type="image" id="6" class="est" src="assets/img/0.png" alt=""></div>
+            </div>
+            <div class="row">
+                <div class="col fosforo"><input type="image" id="1" class="est" src="assets/img/0.png" alt=""></div>
+                <div class="col fosforo"><input type="image" id="7" class="est" src="assets/img/0.png" alt=""></div>
+            </div>
+            <div class="row">
+                <div class="col fosforo"><input type="image" id="2" class="est" src="assets/img/0.png" alt=""></div>
+                <div class="col fosforo"><input type="image" id="8" class="est" src="assets/img/0.png" alt=""></div>
+            </div>
+            <div class="row">
+                <div class="col fosforo"><input type="image" id="3" class="est" src="assets/img/0.png" alt=""></div>
+                <div class="col fosforo"><input type="image" id="9" class="est" src="assets/img/0.png" alt=""></div>
+            </div>
+            <div class="row">
+                <div class="col fosforo"><input type="image" id="4" class="est" src="assets/img/0.png" alt=""></div>
+                <div class="col fosforo"><input type="image" id="10" class="est" src="assets/img/0.png" alt=""></div>
+            </div>
+            <div class="row">
+                <div class="col fosforo"><input type="image" id="5" class="est" src="assets/img/0.png" alt=""></div>
+                <div class="col fosforo"><input type="image" id="11" class="est" src="assets/img/0.png" alt=""></div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="totalPuntos">
+                    a 24
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"><input type="button" class="form-control boton" id="restaE1" value="-"></div>
+                <div class="col" id="totalPuntos1">0</div>
+                <div class="col"><input type="button" class="form-control boton" id="fin" value="Fin"></div>
+                <div class="col" id="totalPuntos2">0</div>
+                <div class="col"><input type="button" class="form-control boton" id="restaE2" value="-"></div>
+            </div>
+
+        </div>
+
+        <script>
+
+            $(document).ready(function(){
+
+                var totalPuntos= 0;
+                var puntosE1 = 0;
+                var puntosE2 = 0;
+                var fosforosE1 = 0;
+                var fosforosE2 = 0;
+                var cajaE1=0;
+                var cajaE2=6;
+
+                $('#24').on('click', function(){totalPuntos= 24});
+                $('#30').on('click', function(){totalPuntos= 30});
+
+                $('#iniciar').on('click', fnAnotador);
+                $('#fin').on('click', fnInicio);
+
+                $('#sumaE1').on('click', fnSumaE1);
+                $('#sumaE2').on('click', fnSumaE2);
+                $('#restaE1').on('click', fnRestaE1);
+                $('#restaE2').on('click', fnRestaE2);
+
+                function fnAnotador(){
+
+                    if (totalPuntos==0){
+                        alert("Elige a cuantos puntos jugarás.")
+                    }else{
+                        $('#inicio').removeClass('container mostrar').addClass('container ocultar');
+                        $('#anotador').removeClass('container ocultar').addClass('container mostrar');
+                        if (totalPuntos==30){
+                            $('#totalPuntos').html("a 30");
+                        }else{
+                            $('#totalPuntos').html("a 24");
+                        }
+                    }
+
+                    if ($('#equipo1').val()=="" || $('#equipo2').val()==""){
+                        $('#Aequipo1').html("Equipo 1");
+                        $('#Aequipo2').html("Equipo 2");
+                    }else{
+                        equipo1 = $('#equipo1').val();
+                        $('#Aequipo1').html(""+ equipo1);
+
+                        equipo2 = $('#equipo2').val();
+                        $('#Aequipo2').html(""+equipo2);
+                    }
+
+
+
+                }
+
+                function fnInicio(){
+                    totalPuntos=0;
+                    puntosE1 = 0;
+                    puntosE2 = 0;
+                    fosforosE1= 0;
+                    fosforosE2= 0;
+                    cajaE1=0;
+                    cajaE2=6;
+                    for(i=0;i<=10;i++){
+                        $('#' + i).attr('src','assets/img/0.png');
+                    }
+                    $('#totalPuntos1').html("0");
+                    $('#totalPuntos2').html("0");
+                    $('#equipo1').val("");
+                    $('#equipo2').val("");
+                    $('#anotador').removeClass('container mostrar').addClass('container ocultar');
+                    $('#inicio').removeClass('container ocultar').addClass('container mostrar');
+                }
+
+                function fnSumaE1(){
+                    if(puntosE1<totalPuntos){
+                        //funcionalidad
+                        puntosE1++;
+                        equipo1win = $('#Aequipo1').html();
+                        $('#totalPuntos1').html(""+puntosE1);
+                        //fosforos
+                        if(fosforosE1<5){
+                            fosforosE1++;
+                            $('#' + cajaE1).attr('src','assets/img/' + fosforosE1 + '.png');
+                        }else{
+                            cajaE1++;
+                            fosforosE1=1;
+                            $('#' + cajaE1).attr('src','assets/img/' + fosforosE1 + '.png');
+                        }
+                        
+                    }else{
+                        alert("Gano "+equipo1win+"!");
+                    }
+                    
+                }
+
+                function fnSumaE2(){
+
+                    if (puntosE2<totalPuntos){
+                        puntosE2++;
+                        equipo2win = $('#Aequipo2').html();
+                        $('#totalPuntos2').html(""+puntosE2);
+                        if(fosforosE2<5){
+                            fosforosE2++;
+                            $('#' + cajaE2).attr('src','assets/img/' + fosforosE2 + '.png');
+                        }else{
+                            cajaE2++;
+                            fosforosE2=1;
+                            $('#' + cajaE2).attr('src','assets/img/' + fosforosE2 + '.png');
+                        }
+                        
+                    }else{
+                        alert("Gano "+equipo2win+"!")
+                    };
+                }
+
+                function fnRestaE1(){
+                    if(puntosE1>0){
+                        //funcionalidad
+                        puntosE1--;
+                        $('#totalPuntos1').html(""+puntosE1);
+                        //fosforos
+                        
+                        if(fosforosE1>0){
+                            fosforosE1--;
+                            $('#' + cajaE1).attr('src','assets/img/' + fosforosE1 + '.png');
+                        }else{
+                            cajaE1--;
+                            fosforosE1=4;
+                            $('#' + cajaE1).attr('src','assets/img/' + fosforosE1 + '.png');
+                        }
+                    }else{
+                        alert("Esto no es chin chon!");
+                    }
+
+                }
+
+                function fnRestaE2(){
+
+                    if(puntosE2>0){
+                        //funcionalidad
+                        puntosE2--;
+                        $('#totalPuntos2').html(""+puntosE2);
+                        //fosforos
+                        if(fosforosE2>0){
+                            fosforosE2--;
+                            $('#' + cajaE2).attr('src','assets/img/' + fosforosE2 + '.png');
+                        }else{
+                            cajaE2--;
+                            fosforosE2=4;
+                            $('#' + cajaE2).attr('src','assets/img/' + fosforosE2 + '.png');
+                        }
+                    }else{
+                        alert("Esto no es chin chon!");
+                    }
+                    
+                }
+
+            })
+
+        </script>
+    
+    </body>
+</html>

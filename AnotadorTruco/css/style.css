@@ -1,0 +1,52 @@
+body{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+
+    background-color: rgb(6, 151, 6);
+    color: white;
+}
+
+.mostrar{
+    display:block;
+    visibility: visible;
+}
+
+.ocultar{
+    display:none;
+    visibility: hidden;
+}
+
+.boton{
+    background-color: rgb(6, 151, 6);
+    color: white;
+    border-color: white;
+}
+
+input[type="image" i] {
+    width: 50px; 
+    height: 50px;
+}
+
+.cero{
+    background-image: url("css/0.png");
+}
+
+.uno{
+    background-image: url("css/1.png");
+}
+.dos{
+    background-image: url("css/2.png");
+}
+.tres{
+    background-image: url("css/3.png");
+}
+.cuatro{
+    background-image: url("css/4.png");
+}
+.cinco{
+    background-image: url("css/5.png");
+}
